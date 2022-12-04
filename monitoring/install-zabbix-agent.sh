@@ -19,7 +19,7 @@ else
         ubuntu_version=$(lsb_release -r | awk '{print $2}')
 
         # Check if the version is 18.04 or 20.04
-        if [[ $ubuntu_version == "18.04" ]]; then
+        if [ $ubuntu_version == "18.04" ]; then
             # Ubuntu version is 18.04
             wget https://repo.zabbix.com/zabbix/6.2/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.2-4%2Bubuntu18.04_all.deb
             dpkg -i zabbix-release_6.2-4+ubuntu18.04_all.deb
@@ -34,7 +34,7 @@ else
             systemctl restart zabbix-agent2
             systemctl enable zabbix-agent2
         fi
-        if [[ $ubuntu_version == "20.04" ]]; then
+        if [ $ubuntu_version == "20.04" ]; then
             # Ubuntu version is 20.04
             wget https://repo.zabbix.com/zabbix/6.2/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.2-4%2Bubuntu20.04_all.deb
             dpkg -i zabbix-release_6.2-4+ubuntu20.04_all.deb
@@ -55,9 +55,9 @@ else
             exit 1
         fi
     fi
-    else
-    # lsb_release command is not available, so print an error message and exit
-    echo "Error: lsb_release command not found. Is this a Ubuntu system?"
-    exit 1
+    #If statement for if the lsb release doesn't run
+    if ! command -v lsb_release >/dev/null 2>&1; then
+        echo "Error: This script is only compatible with Ubuntu 18.04 and 20.04."
+        exit 1
     fi
 fi
