@@ -24,7 +24,7 @@ else
             wget https://repo.zabbix.com/zabbix/6.2/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.2-4%2Bubuntu18.04_all.deb
             dpkg -i zabbix-release_6.2-4+ubuntu18.04_all.deb
             apt update
-            apt install zabbix-agent2 zabbix-agent2-plugin-* -y
+            apt install zabbix-agent2 -y
             #We need to get the hostname of the server now and add it to the zabbix_agentd.conf file
             server_hostname=$(hostname)
             sed -i "s/^Hostname=.*/Hostname=$server_hostname/" /etc/zabbix/zabbix_agentd.conf
@@ -39,7 +39,7 @@ else
             wget https://repo.zabbix.com/zabbix/6.2/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.2-4%2Bubuntu20.04_all.deb
             dpkg -i zabbix-release_6.2-4+ubuntu20.04_all.deb
             apt update
-            apt install zabbix-agent2 zabbix-agent2-plugin-* -y
+            apt install zabbix-agent2 -y
             #We need to get the hostname of the server now and add it to the zabbix_agentd.conf file
             server_hostname=$(hostname)
             sed -i "s/^Hostname=.*/Hostname=$server_hostname/" /etc/zabbix/zabbix_agentd.conf
