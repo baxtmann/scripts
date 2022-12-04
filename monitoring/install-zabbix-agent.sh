@@ -1,12 +1,20 @@
 #This script will install Zabbix agent on a Linux server if it does not already exist, and edit the configuration file to point to the Zabbix server.
 
 #Check if Zabbix agent is already installed
-if [ -f /etc/zabbix/zabbix_agentd.conf ]; then #CHANGE THIS ONCE INITIAL TESTING IS DONE TO AGENT2 PATH
+if [ -f /etc/zabbix/zabbix_agent2.conf ]; then #CHANGE THIS ONCE INITIAL TESTING IS DONE TO AGENT2 PATH
     echo "Zabbix agent is already installed, we will just update the configuration file."
     server_hostname=$(hostname)
     sed -i "s/^Hostname=.*/Hostname=$server_hostname/" /etc/zabbix/zabbix_agent2.conf
-    sed -i 's/^Server=.*/Server=zabbix.jumpstartlabs.co/' /etc/zabbix/zabbix_agent2.conf
-    sed -i "s/^ServerActive=.*/ServerActive=zabbix.jumpstartlabs.co/" /etc/zabbix/zabbix_agent2.conf
+    sed -i 's/^Server=.*/Server=zabbix.jumpstartlabs.co,192.168.0.180/' /etc/zabbix/zabbix_agent2.conf
+    sed -i "s/^ServerActive=.*/ServerActive=zabbix.jumpstartlabs.co,192.168.0.180/" /etc/zabbix/zabbix_agent2.conf
+    #now we restart and enable the zabbix agent
+    systemctl restart zabbix-agent
+elif [ -f /etc/zabbix/zabbix_agentd.conf ]; then #CHANGE THIS ONCE INITIAL TESTING IS DONE TO AGENT2 PATH
+    echo "Zabbix agent is already installed, we will just update the configuration file."
+    server_hostname=$(hostname)
+    sed -i "s/^Hostname=.*/Hostname=$server_hostname/" /etc/zabbix/zabbix_agent2.conf
+    sed -i 's/^Server=.*/Server=zabbix.jumpstartlabs.co,192.168.0.180/' /etc/zabbix/zabbix_agent2.conf
+    sed -i "s/^ServerActive=.*/ServerActive=zabbix.jumpstartlabs.co,192.168.0.180/" /etc/zabbix/zabbix_agent2.conf
     #now we restart and enable the zabbix agent
     systemctl restart zabbix-agent
 else
@@ -28,8 +36,8 @@ else
             #We need to get the hostname of the server now and add it to the zabbix_agentd.conf file
             server_hostname=$(hostname)
             sed -i "s/^Hostname=.*/Hostname=$server_hostname/" /etc/zabbix/zabbix_agent2.conf
-            sed -i 's/^Server=.*/Server=zabbix.jumpstartlabs.co/' /etc/zabbix/zabbix_agent2.conf
-            sed -i "s/^ServerActive=.*/ServerActive=zabbix.jumpstartlabs.co/" /etc/zabbix/zabbix_agent2.conf
+            sed -i 's/^Server=.*/Server=zabbix.jumpstartlabs.co,192.168.0.180/' /etc/zabbix/zabbix_agent2.conf
+            sed -i "s/^ServerActive=.*/ServerActive=zabbix.jumpstartlabs.co,192.168.0.180/" /etc/zabbix/zabbix_agent2.conf
             #now we restart and enable the zabbix agent
             systemctl restart zabbix-agent2
             systemctl enable zabbix-agent2
@@ -43,8 +51,8 @@ else
             #We need to get the hostname of the server now and add it to the zabbix_agentd.conf file
             server_hostname=$(hostname)
             sed -i "s/^Hostname=.*/Hostname=$server_hostname/" /etc/zabbix/zabbix_agent2.conf
-            sed -i 's/^Server=.*/Server=zabbix.jumpstartlabs.co/' /etc/zabbix/zabbix_agent2.conf
-            sed -i "s/^ServerActive=.*/ServerActive=zabbix.jumpstartlabs.co/" /etc/zabbix/zabbix_agent2.conf
+            sed -i 's/^Server=.*/Server=zabbix.jumpstartlabs.co,192.168.0.180/' /etc/zabbix/zabbix_agent2.conf
+            sed -i "s/^ServerActive=.*/ServerActive=zabbix.jumpstartlabs.co,192.168.0.180/" /etc/zabbix/zabbix_agent2.conf
             #now we restart and enable the zabbix agent
             systemctl restart zabbix-agent2
             systemctl enable zabbix-agent2
