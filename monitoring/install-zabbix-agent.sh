@@ -54,6 +54,7 @@ else
             echo "Error: This script is only compatible with Ubuntu 18.04 and 20.04."
             exit 1
         fi
+    fi
     else
     # lsb_release command is not available, so print an error message and exit
     echo "Error: lsb_release command not found. Is this a Ubuntu system?"
