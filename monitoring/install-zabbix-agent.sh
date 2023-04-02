@@ -13,8 +13,8 @@ elif [ -f /etc/zabbix/zabbix_agentd.conf ]; then #CHANGE THIS ONCE INITIAL TESTI
     echo "Zabbix agent is already installed, we will just update the configuration file."
     server_hostname=$(hostname)
     sed -i "s/^Hostname=.*/Hostname=$server_hostname/" /etc/zabbix/zabbix_agentd.conf
-    sed -i 's/^Server=.*/Server=zabbix.jumpstartlabs.co,192.168.0.180/' /etc/zabbix/zabbix_agentd.conf
-    sed -i "s/^ServerActive=.*/ServerActive=zabbix.jumpstartlabs.co,192.168.0.180/" /etc/zabbix/zabbix_agentd.conf
+    sed -i 's/^Server=.*/Server=zabbix.jumpstartlabs.co,192.168.0.156/' /etc/zabbix/zabbix_agentd.conf
+    sed -i "s/^ServerActive=.*/ServerActive=zabbix.jumpstartlabs.co,192.168.0.156/" /etc/zabbix/zabbix_agentd.conf
     #now we restart and enable the zabbix agent
     systemctl restart zabbix-agent
 else
