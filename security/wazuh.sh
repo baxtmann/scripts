@@ -19,6 +19,9 @@ sudo apt-get install wazuh-agent -y
 # Register the Wazuh agent with the manager
 #sudo /var/ossec/bin/agent-auth -m wazuh.jumpstartlabs.co -p 1515
 
+#Replace the line in ossec config file with the location of the wazuh server.
+sed -i 's/\(<address>\)MANAGER_IP\(<\/address>\)/\1wazuh.jumpstartlabs.co\2/' /var/ossec/etc/ossec.conf
+
 # Set up the Wazuh agent service
 sudo systemctl enable wazuh-agent
 sudo systemctl start wazuh-agent
