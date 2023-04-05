@@ -12,3 +12,6 @@ sudo git clone https://github.com/baxtmann/scripts && cd scripts/ && cd monitori
 
 Install Wazuh Agent:
 sudo git clone https://github.com/baxtmann/scripts && cd scripts/ && cd security/ && sudo sh ./wazuh.sh
+
+Install BOTH: 
+sudo git clone https://github.com/baxtmann/scripts && cd scripts/ && cd security/ && sudo sh ./wazuh.sh && cd .. && cd monitoring/ && sudo sh ./install-zabbix-agent.sh
